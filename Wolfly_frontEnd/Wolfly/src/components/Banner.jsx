@@ -5,6 +5,7 @@ import slider3 from '../Images/Banner/slider3.png';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 
 const images = [slider1, slider2, slider3];
+
 const Banner = () => {
     const [currentIndex, setCurrentIndex] = useState(0);
 
@@ -25,7 +26,7 @@ const Banner = () => {
 
     return (
         <>
-            <main className='relative w-full bg-black'> {/* Added bg-black here */}
+            <main className='relative w-full bg-pink-500'> {/* Changed bg-black to bg-pink-500 */}
                 <section className='relative flex items-center justify-center h-96 overflow-hidden'>
                     <div className='relative w-full h-full flex items-center justify-center overflow-hidden'>
                         <div className='w-full h-full flex transition-transform duration-700 ease-in-out'

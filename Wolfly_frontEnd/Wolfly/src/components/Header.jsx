@@ -7,7 +7,7 @@ import { getToken,deleteToken } from '../services/LocalStorageToken';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useGetCartItemQuery } from "../services/userAuthApi";
-import logo from '../Images/logo.png';
+import logo from '../Images/logo1.png';
 
 const Header = (props) => {
   const useAppState = useContext(Appstate);
@@ -42,7 +42,7 @@ const Header = (props) => {
       
         <section className='p-5 flex md:justify-between md:flex-row flex-col bg-black'>
         <div className="flex items-center">
-          <img src={logo} alt="Wolfly Logo" className="w-30 h-14 mr-2" />
+          <img src={logo} alt="Wolfly Logo" className="w-36 h-14 mr-2" />
         </div>
           <nav className='md:my-0 my-2'>
               <ul className='flex gap-x-5 gap-y-5 items-center text-xl justify-between flex-wrap'>
@@ -52,10 +52,10 @@ const Header = (props) => {
                   style={({ isActive }) => ({
                     fontWeight: isActive ? 'bold' : '',
                   })}
-                  className="group text-white hover:text-pink-500 transition-colors duration-300"
+                  className="group text-white hover:text-gray-200 transition-colors duration-300"
                 >
                   Home
-                  <span className="block max-w-0 group-hover:max-w-full transition-all duration-500 h-0.5 bg-dark-teal group-hover:bg-pink-500"></span>
+                  <span className="block max-w-0 group-hover:max-w-full transition-all duration-500 h-0.5 bg-dark-teal group-hover:bg-gray-200"></span>
                 </NavLink>
               </li>
 
@@ -66,10 +66,10 @@ const Header = (props) => {
                   style={({ isActive }) => ({
                     fontWeight: isActive ? 'bold' : '',
                   })}
-                  className="group text-white hover:text-pink-500 transition-colors duration-300"
+                  className="group text-white hover:text-gray-200 transition-colors duration-300"
                 >
                   About
-                  <span className="block max-w-0 group-hover:max-w-full transition-all duration-500 h-0.5 bg-dark-teal group-hover:bg-pink-500"></span>
+                  <span className="block max-w-0 group-hover:max-w-full transition-all duration-500 h-0.5 bg-dark-teal group-hover:bg-gray-200"></span>
                 </NavLink>
               </li>
 
@@ -79,10 +79,10 @@ const Header = (props) => {
                   style={({ isActive }) => ({
                     fontWeight: isActive ? 'bold' : '',
                   })}
-                  className="group text-white hover:text-pink-500 transition-colors duration-300"
+                  className="group text-white hover:text-gray-200 transition-colors duration-300"
                 >
                   Product
-                  <span className="block max-w-0 group-hover:max-w-full transition-all duration-500 h-0.5 bg-dark-teal group-hover:bg-pink-500"></span>
+                  <span className="block max-w-0 group-hover:max-w-full transition-all duration-500 h-0.5 bg-dark-teal group-hover:bg-gray-200"></span>
                 </NavLink>
               </li>
 
@@ -93,10 +93,10 @@ const Header = (props) => {
                   style={({ isActive }) => ({
                     fontWeight: isActive ? 'bold' : '',
                   })}
-                  className="group text-white hover:text-pink-500 transition-colors duration-300"
+                  className="group text-white hover:text-gray-200 transition-colors duration-300"
                 >
                   Contact
-                  <span className="block max-w-0 group-hover:max-w-full transition-all duration-500 h-0.5 bg-dark-teal group-hover:bg-pink-500"></span>
+                  <span className="block max-w-0 group-hover:max-w-full transition-all duration-500 h-0.5 bg-dark-teal group-hover:bg-gray-200"></span>
                 </NavLink>
               </li>
 
@@ -105,10 +105,10 @@ const Header = (props) => {
                <li>
                <button
                  onClick={handleLogout}
-                 className="group text-white hover:text-pink-500 transition-colors duration-300"
+                 className="group text-white hover:text-gray-200 transition-colors duration-300"
                >
                  Logout
-                 <span className="block max-w-0 group-hover:max-w-full transition-all duration-500 h-0.5 bg-dark-teal group-hover:bg-pink-500"></span>
+                 <span className="block max-w-0 group-hover:max-w-full transition-all duration-500 h-0.5 bg-dark-teal group-hover:bg-gray-200"></span>
                </button>
              </li>
              
@@ -119,10 +119,10 @@ const Header = (props) => {
                     style={({ isActive }) => ({
                       fontWeight: isActive ? 'bold' : '',
                     })}
-                    className="group text-white hover:text-pink-500 transition-colors duration-300"
+                    className="group text-white hover:text-gray-200 transition-colors duration-300"
                   >
                     Login
-                    <span className="block max-w-0 group-hover:max-w-full transition-all duration-500 h-0.5 bg-dark-teal group-hover:bg-pink-500"></span>
+                    <span className="block max-w-0 group-hover:max-w-full transition-all duration-500 h-0.5 bg-dark-teal group-hover:bg-gray-200"></span>
                   </NavLink>
                 </li>
 
@@ -130,11 +130,11 @@ const Header = (props) => {
                 <li>
                   <NavLink
                     to={access_token ? `/Checkout` : `/login`}
-                    className="group flex bg-gradient-to-r from-red-500 to-red-700 text-teal-100 justify-center px-5 py-1 text-sm rounded-md transition-colors duration-300"
+                    className="group flex bg-white text-black justify-center px-5 py-1 text-sm rounded-md transition-colors duration-300"
                   >
                     <ShoppingCartIcon />
                     <p className="pl-2 text-lg">{access_token ? useAppState.addCartLength : ''}</p>
-                    <span className="block max-w-0 group-hover:max-w-full transition-all duration-500 h-0.5 bg-dark-teal group-hover:bg-pink-500"></span>
+                    <span className="block max-w-0 group-hover:max-w-full transition-all duration-500 h-0.5 bg-dark-teal group-hover:bg-gray-200"></span>
                   </NavLink>
                 </li>
 

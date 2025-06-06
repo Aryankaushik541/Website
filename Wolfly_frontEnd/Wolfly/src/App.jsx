@@ -16,7 +16,7 @@ import { useSelector } from 'react-redux'
 import ProductDetails from "./components/ProductDetails";
 import Checkout from "./components/Checkout";
 import Address from "./components/Address";
-
+import Order from './components/Order';
 
 
 const Appstate = createContext();
@@ -35,7 +35,7 @@ const App = () => {
             <Route path="/about" element={<About />} />
             <Route path="/product" element={<ProductContent />} />
             <Route path="/AddToCart" element={<AddToCart />} />
-          
+            <Route path="/Order" element={<Order />} />
            
             {/* <Route path="/Siderbar" element={<Siderbar />} /> */}
             <Route path="/Address" element={<Address />} />

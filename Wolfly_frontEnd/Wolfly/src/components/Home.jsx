@@ -7,6 +7,7 @@ import Product from './Product'
 const Home = () => {
   return (
    <>
+        
         <Banner />
         <Extraproduct />
         <Policy />

@@ -1,7 +1,6 @@
 import React, { useEffect, useContext, useState } from "react";
 import StarIcon from "@mui/icons-material/Star";
 import StarHalfIcon from "@mui/icons-material/StarHalf";
-
 import { Appstate } from "../App";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -42,21 +41,24 @@ const Product = () => {
     return (
         <>
             <ToastContainer />
+            
             <section>
+            
                 <div className="my-0 mx-auto py-28 px-11">
-                    <h2 className="font-bold text-3xl">Why Choose Wolfly</h2>
+                    <h2 className="font-bold text-3xl">Why Choose Neverend Lifestyle</h2>
                     <p className="text-2xl font-light">
-                        Choose Wolfly for a holistic, enriching learning experience that empowers you to achieve your goals.
+                        Choose Neverend Lifestyle for a holistic, enriching learning experience that empowers you to achieve your goals.
                     </p>
                 </div>
 
                 <div className="grid lg:grid-cols-3 md:grid-cols-2 gap-6 px-10">
-
+                
                     {
                         products && products.length > 0 ? (
 
                             products.map((element) => (
                                 <div
+                                    
                                     className="flex flex-wrap items-start gap-7 w-80 p-6 my-7 mx-auto shadow-lg"
                                     key={element.slug}
                                     onMouseEnter={() => setHoveredId(element.id)}
@@ -66,7 +68,9 @@ const Product = () => {
                                         <span className="text-dark-teal bg-teal-100 py-1 px-4 rounded-full">
                                             {element.category.name}
                                         </span>
-
+                                        
+                                        
+                            
                                         <div className="relative text-center w-72 h-72 mb-10 group">
                                             <img
                                                 src={`http://127.0.0.1:8000/${element.front_imges}`}
@@ -81,7 +85,7 @@ const Product = () => {
                                                 />
                                             )}
                                         </div>
-
+                                        
                                         <h2 className="text-3xl font-bold pt-2">{element.title}</h2>
                                         <div className="text-yellow-400">
                                             <StarIcon />
