@@ -31,21 +31,19 @@ Website/
 
 ⚙️ Setup Instructions
 1️⃣ Backend (Django)
-bash
-Copy
-Edit
+
 cd backend
 python -m venv env
 source env/bin/activate  # or env\Scripts\activate on Windows
 pip install -r requirements.txt
 python manage.py migrate
 python manage.py runserver
+
+
 Server starts at http://127.0.0.1:8000/
 
 2️⃣ Frontend (React)
-bash
-Copy
-Edit
+
 cd frontend
 npm install
 npm start
