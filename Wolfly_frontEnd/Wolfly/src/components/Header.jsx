@@ -42,7 +42,7 @@ const Header = (props) => {
       
         <section className='p-5 flex md:justify-between md:flex-row flex-col bg-black'>
         <div className="flex items-center">
-          <img src={logo} alt="Wolfly Logo" className="w-36 h-14 mr-2" />
+          <img src={logo} alt="Wolfly Logo" className="w-44 h-14 mr-2 shadow-lg border-2 border-gray-300 rounded-md" />
         </div>
           <nav className='md:my-0 my-2'>
               <ul className='flex gap-x-5 gap-y-5 items-center text-xl justify-between flex-wrap'>
