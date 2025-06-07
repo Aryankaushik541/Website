@@ -109,11 +109,10 @@ const Product = () => {
                              
                                                 <NavLink
                                                     to={`/productdetails/${element.slug}/`}
-                                                    className="relative px-8 py-3 text-lg font-bold text-white bg-gradient-to-r from-blue-500 to-indigo-600 rounded-full shadow-xl 
-                                    hover:from-indigo-600 hover:to-blue-500 hover:scale-105 transform transition-all duration-300 ease-out
-                                    after:content-[''] after:absolute after:inset-0 after:border-2 after:border-white after:rounded-full 
-                                    after:opacity-0 hover:after:opacity-100 hover:after:scale-110 
-                                    before:absolute before:inset-0 before:bg-white before:blur-lg before:opacity-10 hover:before:opacity-20"
+                                                    className="relative px-8 py-3 text-lg font-semibold text-white bg-gradient-to-r from-neutral-900 via-gray-700 to-neutral-200 
+                                                    rounded-full shadow-2xl hover:from-neutral-200 hover:to-neutral-900 hover:text-black hover:scale-105 transform transition-all duration-300 ease-out
+                                                    before:absolute before:inset-0 before:bg-white before:blur-2xl before:opacity-10 hover:before:opacity-20 before:rounded-full
+                                                    after:content-[''] after:absolute after:inset-0 after:border-2 after:border-white after:rounded-full after:opacity-0 hover:after:opacity-100 hover:after:scale-110"
                                                 >
                                                     Buy Now
                                                 </NavLink>
