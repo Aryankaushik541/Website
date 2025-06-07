@@ -223,3 +223,23 @@ PASSWORD_RESET_TIMEOUT = 55900 # 300 sec == 15 min
 
 SITE_DOMAIN = 'http://localhost:8000'
 SITE_NAME = 'Local Host'
+
+# Add these to your Django settings.py file
+
+# Razorpay Configuration
+RAZORPAY_KEY_ID = 'your_razorpay_key_id_here'  # Get this from Razorpay Dashboard
+RAZORPAY_KEY_SECRET = 'your_razorpay_key_secret_here'  # Get this from Razorpay Dashboard
+
+# For production, use environment variables:
+# import os
+# RAZORPAY_KEY_ID = os.getenv('RAZORPAY_KEY_ID')
+# RAZORPAY_KEY_SECRET = os.getenv('RAZORPAY_KEY_SECRET')
+
+# Add razorpay to your installed packages
+# pip install razorpay
+
+# If you're using environment variables in production (.env file):
+"""
+RAZORPAY_KEY_ID=rzp_test_xxxxxxxxx
+RAZORPAY_KEY_SECRET=your_secret_key_here
+"""

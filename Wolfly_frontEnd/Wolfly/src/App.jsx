@@ -17,8 +17,7 @@ import ProductDetails from "./components/ProductDetails";
 import Checkout from "./components/Checkout";
 import Address from "./components/Address";
 import Order from './components/Order';
-
-
+import Admin from './components/Admin';
 const Appstate = createContext();
 const App = () => {
   const [data, setData] = useState([]);
@@ -36,7 +35,7 @@ const App = () => {
             <Route path="/product" element={<ProductContent />} />
             <Route path="/AddToCart" element={<AddToCart />} />
             <Route path="/Order" element={<Order />} />
-          
+            <Route path="/Admin" element={<Admin />} />
             {/* <Route path="/Siderbar" element={<Siderbar />} /> */}
             <Route path="/Address" element={<Address />} />
             <Route path="/Checkout" element={<Checkout />} />
@@ -47,7 +46,6 @@ const App = () => {
             <Route path="/forgetpassword" element={<Forgetpassword/>} />
             <Route path="/resetPassword/:id/:token" element={<ResetPassword/>} />
             <Route path="*" element={<PageNotFound/>}/>
-            
           </Routes>
         </Appstate.Provider>
     </>

@@ -27,7 +27,7 @@ const AddToCart = () => {
     }, [cartItems]);
 
     const calculateTotalPrice = () => {
-        const total = cartItems.reduce((acc, item) => acc + (item.price || 0), 0); // Handle undefined price
+        const total = cartItems.reduce((acc, item) => acc + (item.price || 0), 0);
         setTotalPrice(total);
     };
 
@@ -35,14 +35,12 @@ const AddToCart = () => {
         const updatedCart = cartItems
             .map((item) => {
                 if (item.id === itemId) {
-                    if (newQuantity <= 0) {
-                        return null;
-                    }
+                    if (newQuantity <= 0) return null;
                     if (newQuantity > item.stock) {
                         toast.error("Cannot exceed available stock", { position: "top-right", autoClose: 1000, theme: "colored" });
-                        return item; // Don't change quantity if exceeding stock
+                        return item;
                     }
-                    const updatedItem = { ...item, quantity: newQuantity, price: (item.discount_price || 0) * newQuantity }; // Handle undefined discount_price
+                    const updatedItem = { ...item, quantity: newQuantity, price: (item.discount_price || 0) * newQuantity };
                     return updatedItem;
                 }
                 return item;
@@ -61,13 +59,30 @@ const AddToCart = () => {
         useAppState.setAddCart(updatedCart.length);
     };
 
-    if (!access_token) {
-        return null;
-    }
+    if (!access_token) return null;
 
-    const handleCheckout = () => {
-        let slugString = cartItems.map(item => item.slug).join(',');
-        navigate(`/Checkout/${slugString}`);
+    const handleCheckout = async () => {
+        try {
+            const response = await fetch("http://127.0.0.1:8000/orders/placeorder/", {
+                method: "POST",
+                headers: {
+                    'Authorization': `Bearer ${access_token}`,
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ items: cartItems })
+            });
+
+            if (response.ok) {
+                toast.success("Order placed successfully!");
+                localStorage.removeItem('cart');
+                useAppState.setAddCart(0);
+                navigate("/orders");
+            } else {
+                toast.error("Order failed. Try again.");
+            }
+        } catch (err) {
+            toast.error("Something went wrong!");
+        }
     };
 
     return (

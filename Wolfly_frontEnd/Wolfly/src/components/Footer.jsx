@@ -12,7 +12,7 @@ const Footer = () => {
     return (
         <>
             <footer className='bg-black text-teal-100'>
-                <div className='mt-44 pt-10 pb-5 px-5'>
+                <div className='mt-0 pt-10 pb-5 px-5'>
                     <div className='flex flex-col'>
                         <span className="font-mono p-2 w-50">
                             <span className="flex items-center">

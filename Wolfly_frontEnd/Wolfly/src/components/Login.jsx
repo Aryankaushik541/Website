@@ -1,19 +1,12 @@
 import React from "react";
 import LoginForm from "./LoginForm";
-import Footer from "./Footer"
-
-// Importing the image correctly
-import LoginBackground from '../Images/Login.png'; // Ensure this path is correct
+import Footer from "./Footer";
 
 const Login = () => {
   return (
     <>
       <div
-        className="flex items-full justify-full w-full h-full bg-center"
-        style={{
-          backgroundImage: `url(${LoginBackground})`, // Using the imported image for background
-          height: '80vh' // Limit height to 80% of the viewport height
-        }}
+        className="flex items-center justify-center w-full min-h-screen bg-gradient-to-br from-black via-gray-900 to-white text-white transition-all duration-300"
       >
         <LoginForm />
       </div>

@@ -7,7 +7,7 @@ import { getToken, storeToken } from '../services/LocalStorageToken';
 import { useDispatch } from 'react-redux'
 import { setUserToken } from '../features/user/userSlice';
 import { motion } from "framer-motion";
-import logo from '../Images/logo.png';
+
 
 const Login = () => {
 
@@ -56,7 +56,7 @@ const Login = () => {
     
                         // ✅ Redirect based on user type
                         const isAdmin = response.data.is_admin;  
-                        navigate(isAdmin ? '/admin-dashboard' : '/');
+                        navigate(isAdmin ? '/Admin' : '/');
                     }, 2000);
                 }
             }
@@ -78,7 +78,7 @@ const Login = () => {
                       transition={{ duration: 0.5 }}
                       className="backdrop-blur-xl bg-opacity-10 bg-white p-10 rounded-lg shadow-2xl max-w-lg w-full border border-gray-600"
                     >
-                        <h2 className="text-4xl font-bold text-center text-black mb-8">Login</h2>
+                        <h2 className="text-4xl font-bold text-center text-white mb-8">LOG IN </h2>
                 <form className='flex flex-col gap-6 w-full' onSubmit={handleSubmit} id='LoginForm'>
                     <div className="relative w-full min-w-[200px] h-10">
                         <input
@@ -125,7 +125,7 @@ const Login = () => {
                             wrapperStyle={{}}
                             wrapperClass=""
                         /></div> : 'Login'}</button>
-                        <NavLink to='/Forgetpassword' className='text-sky-700 underline '>
+                        <NavLink to='/Forgetpassword' className='text-black'>
                             Forget Password?
                         </NavLink>
                     </p>
@@ -137,7 +137,7 @@ const Login = () => {
                             :
                             <></>
                     }
-                    <p>Create a New Account ? <NavLink to="/Signup" className="text-sky-700 underline ">Sign Up</NavLink></p>
+                    <p>Create a New Account ? <NavLink to="/Signup" className="text-black ">Sign Up</NavLink></p>
                 </form>
                 </motion.div>
                 
