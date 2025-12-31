@@ -17,6 +17,9 @@ class Order(models.Model):
     final_price=models.FloatField()
     quantity = models.PositiveIntegerField(default=1)
     address=models.ForeignKey(user_address,on_delete=models.SET_NULL,related_name="address",null=True, blank=True,)
+    cancelled_at = models.DateTimeField(null=True, blank=True)
+    cancellation_reason = models.TextField(blank=True, null=True)
+    shipped_at = models.DateTimeField(null=True, blank=True)  # Optional
     def __str__(self):
         # Show order_id and the customer's name (if available)
         return f"Order ID: {self.order_id}, Name: {self.customer.name if self.customer else 'Unknown'}"

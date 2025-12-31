@@ -3,8 +3,8 @@ import React, { useEffect, useState, useContext } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { Appstate } from "../App"; // Assuming you have an Appstate context
-import { useAddToCartMutation } from '../services/userAuthApi'
+import { Appstate } from "../App";
+import { useAddToCartMutation } from '../services/userAuthApi';
 import { getToken } from "../services/LocalStorageToken";
 
 const ProductDetails = () => {
@@ -15,16 +15,14 @@ const ProductDetails = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const { access_token } = getToken();
-  const useAppState = useContext(Appstate); // Access Appstate context
+  const useAppState = useContext(Appstate);
   const [addtocart, { isLoading }] = useAddToCartMutation(access_token);
 
   useEffect(() => {
     const fetchProductDetails = async () => {
       try {
         const response = await fetch(`http://127.0.0.1:8000/products/product/${slug}/`);
-        if (!response.ok) {
-          throw new Error("Product not found");
-        }
+        if (!response.ok) throw new Error("Product not found");
         const data = await response.json();
         setProduct(data);
         setSelectedImage(`http://127.0.0.1:8000/${data.front_imges}`);
@@ -48,11 +46,10 @@ const ProductDetails = () => {
 
   const handleAddToCart = async () => {
     const response = await addtocart({ productInfo, access_token });
-    console.log(response);
     if (response.error) {
       toast.error(response.error.data.error, { position: "top-right", autoClose: 1000, theme: "colored" });
     } else {
-      useAppState.setAddCartLength(useAppState.addCartLength);
+      useAppState.setAddCartLength(prev => prev + productInfo.quantity);
       toast.success("Product added to cart!", { position: "top-right", autoClose: 1000, theme: "colored" });
     }
   };
@@ -70,16 +67,14 @@ const ProductDetails = () => {
     return <div className="text-center text-red-500 mt-10">{error}</div>;
   }
 
-  // product increment
   const increment = () => {
     if (productInfo.quantity >= product.stock) {
-      toast.error(`only ${product.stock} products are available`, { position: "top-right", autoClose: 1000, theme: "colored" });
+      toast.error(`Only ${product.stock} products are available`, { position: "top-right", autoClose: 1000, theme: "colored" });
     } else {
       setProductInfo({ ...productInfo, quantity: productInfo.quantity + 1 });
     }
   };
 
-  // product decrement
   const decrement = () => {
     if (productInfo.quantity <= 1) {
       toast.error(`You can't add 0 product`, { position: "top-right", autoClose: 1000, theme: "colored" });
@@ -127,20 +122,10 @@ const ProductDetails = () => {
             <p className="text-gray-500 mt-2">🚚 Free Delivery in 2-5 days</p>
 
             {product.stock ? (
-              <div className="flex items-center border border-gray-400 rounded-md w-20 h-8">
-                <button
-                  className="w-6 h-full text-sm font-semibold border-r border-gray-400 flex items-center justify-center"
-                  onClick={decrement}
-                >
-                  -
-                </button>
+              <div className="flex items-center border border-gray-400 rounded-md w-20 h-8 mt-3">
+                <button className="w-6 h-full text-sm font-semibold border-r border-gray-400 flex items-center justify-center" onClick={decrement}>-</button>
                 <p className="w-8 text-center">{productInfo.quantity}</p>
-                <button
-                  className="w-6 h-full text-sm font-semibold border-l border-gray-400 flex items-center justify-center"
-                  onClick={increment}
-                >
-                  +
-                </button>
+                <button className="w-6 h-full text-sm font-semibold border-l border-gray-400 flex items-center justify-center" onClick={increment}>+</button>
               </div>
             ) : null}
           </div>
@@ -151,16 +136,10 @@ const ProductDetails = () => {
             <p className="text-green-600 mt-1">✅ Eligible for free shipping</p>
             {product.stock ? (
               <div className="flex flex-col gap-3 mt-5">
-                <button
-                  className="w-full bg-yellow-500 hover:bg-yellow-600 text-black py-3 px-4 rounded-lg font-semibold text-lg"
-                  onClick={handleAddToCart}
-                >
+                <button className="w-full bg-yellow-500 hover:bg-yellow-600 text-black py-3 px-4 rounded-lg font-semibold text-lg" onClick={handleAddToCart}>
                   🛒 Add to Cart
                 </button>
-                <button
-                  className="w-full bg-orange-600 hover:bg-orange-600 text-white py-3 px-4 rounded-lg font-semibold text-lg"
-                  onClick={handleBuyNow}
-                >
+                <button className="w-full bg-orange-600 hover:bg-orange-600 text-white py-3 px-4 rounded-lg font-semibold text-lg" onClick={handleBuyNow}>
                   ⚡ Buy Now
                 </button>
               </div>

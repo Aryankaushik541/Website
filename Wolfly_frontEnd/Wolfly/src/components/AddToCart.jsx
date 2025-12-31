@@ -59,8 +59,6 @@ const AddToCart = () => {
         useAppState.setAddCart(updatedCart.length);
     };
 
-    if (!access_token) return null;
-
     const handleCheckout = async () => {
         try {
             const response = await fetch("http://127.0.0.1:8000/orders/placeorder/", {
@@ -94,7 +92,7 @@ const AddToCart = () => {
                     <ul className="space-y-4">
                         {cartItems.map((item) => (
                             <li key={item.id} className="flex items-center border p-4 rounded-lg">
-                                <img src={`http://127.0.0.1:8000/${item.front_imges}`} alt={item.title} className="w-20 h-50 object-cover mr-4" />
+                                <img src={`http://127.0.0.1:8000/${item.front_imges}`} alt={item.title} className="w-20 h-20 object-cover mr-4" />
                                 <div className="flex-grow">
                                     <h2 className="text-lg font-semibold">{item.title}</h2>
                                     <p className="text-gray-600">

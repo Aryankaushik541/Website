@@ -36,7 +36,7 @@ const Product = () => {
   return (
     <>
       <ToastContainer />
-      <section className="min-h-screen bg-gradient-to-br from-black via-gray-900 to-white text-white transition-all duration-300 shadow-inner py-28 px-11">
+      <section className="min-h-screen bg-gradient-to-br from-black via-gray-800 to-gray-400 text-white transition-all duration-500 shadow-inner py-35 px-11">
         <div className="max-w-7xl mx-auto">
           <h2 className="font-bold text-3xl mb-4">Why Choose Neverend Lifestyle</h2>
           <p className="text-2xl font-light mb-10">
