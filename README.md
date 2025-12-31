@@ -1,219 +1,270 @@
-<<<<<<< HEAD
-# 🌐 Full Stack Website
+# Neverend Lifestyle - Full Stack E-Commerce Platform
 
-A full-stack web application built with **React.js (frontend)** and **Django (backend)**. This project demonstrates a modern web architecture with API-driven communication, reusable components, and clean UI.
+A modern full-stack e-commerce web application built with **React.js + Vite (frontend)** and **Django REST Framework (backend)**. This project showcases a complete lifestyle brand platform with advanced features including authentication, state management, animations, and a responsive UI.
 
 ## 🔗 Live Demo
 
-Coming Soon…
+Coming Soon...
+
+## ✨ Features
+
+- **Modern UI/UX**: Built with React, Material-UI, and Tailwind CSS
+- **State Management**: Redux Toolkit for efficient state handling
+- **Authentication**: JWT-based authentication with Firebase integration
+- **Animations**: Smooth transitions using Framer Motion
+- **Security**: Google reCAPTCHA integration, password strength validation
+- **Responsive Design**: Mobile-first approach with Tailwind CSS
+- **API Integration**: RESTful API communication with Axios
+- **Toast Notifications**: User-friendly feedback with React Toastify
+- **Loading States**: Enhanced UX with React Loader Spinner
 
 ## 🧩 Tech Stack
 
-- 🔙 **Backend**: Django, Django REST Framework
-- 🔜 **Frontend**: React.js, JSX, CSS
-- 📦 **Package Management**: pip, npm
-- 🔗 **API Communication**: Fetch / Axios
-- 🔒 **Security**: Django CORS, CSRF, JWT (if used)
+### Frontend (Wolfly)
+- **Framework**: React 18.2.0 with Vite
+- **Styling**: Tailwind CSS, Material-UI, Emotion
+- **State Management**: Redux Toolkit
+- **Routing**: React Router DOM v6
+- **HTTP Client**: Axios
+- **Animations**: Framer Motion
+- **Icons**: Heroicons, Material Icons, React Icons, Lucide React
+- **Authentication**: Firebase, JWT Decode
+- **Security**: React Google reCAPTCHA, zxcvbn (password strength)
+- **Build Tool**: Vite
 
----
+### Backend (Django)
+- **Framework**: Django 5.0.1
+- **API**: Django REST Framework 3.14.0
+- **Authentication**: djangorestframework-simplejwt 5.3.1
+- **CORS**: django-cors-headers 4.3.1
+- **Image Processing**: Pillow 11.1.0
+- **Configuration**: python-decouple 3.8
+- **Database**: SQLite (development) / PostgreSQL (production ready)
 
 ## 📁 Project Structure
 
-```bash
+```
 Website/
-├── backend/            # Django project
-│   ├── manage.py
-│   └── ...
-├── frontend/           # React app
-│   ├── package.json
-│   ├── src/
-│   └── ...
+├── Wolfly_frontEnd/
+│   └── Wolfly/              # React + Vite frontend
+│       ├── src/             # Source files
+│       ├── public/          # Static assets
+│       ├── package.json     # Frontend dependencies
+│       ├── vite.config.js   # Vite configuration
+│       ├── tailwind.config.js
+│       └── postcss.config.js
+├── Backend_Dj/
+│   └── Backend/
+│       └── eCommerce/       # Django backend
+│           ├── eCommerce/   # Django project settings
+│           ├── requirement.txt
+│           └── manage.py
+├── .env                     # Environment variables
 └── README.md
+```
 
-⚙️ Setup Instructions
-1️⃣ Backend (Django)
+## ⚙️ Setup Instructions
 
-cd backend
+### Prerequisites
+- Node.js (v16 or higher)
+- Python (v3.8 or higher)
+- pip
+- npm or yarn
+
+### 1️⃣ Backend Setup (Django)
+
+```bash
+# Navigate to backend directory
+cd Backend_Dj/Backend/eCommerce
+
+# Create virtual environment
 python -m venv env
-source env/bin/activate  # or env\Scripts\activate on Windows
-pip install -r requirements.txt
+
+# Activate virtual environment
+# On Windows:
+env\Scripts\activate
+# On macOS/Linux:
+source env/bin/activate
+
+# Install dependencies
+pip install -r requirement.txt
+
+# Run migrations
 python manage.py migrate
+
+# Create superuser (optional)
+python manage.py createsuperuser
+
+# Start development server
 python manage.py runserver
+```
 
+Backend server starts at: `http://127.0.0.1:8000/`
 
-Server starts at http://127.0.0.1:8000/
+### 2️⃣ Frontend Setup (React + Vite)
 
-2️⃣ Frontend (React)
+```bash
+# Navigate to frontend directory
+cd Wolfly_frontEnd/Wolfly
 
-cd frontend
+# Install dependencies
 npm install
-npm start
-App starts at http://localhost:3000/
 
-🔄 Connect Frontend to Backend
-Make sure to enable CORS in Django:
+# Start development server
+npm run dev
+```
 
-python
-Copy
-Edit
-# settings.py
+Frontend app starts at: `http://localhost:5173/`
+
+### 3️⃣ Environment Variables
+
+Create a `.env` file in the root directory with necessary configurations:
+
+```env
+# Backend
+SECRET_KEY=your_django_secret_key
+DEBUG=True
+ALLOWED_HOSTS=localhost,127.0.0.1
+
+# Frontend
+VITE_API_URL=http://127.0.0.1:8000/api
+VITE_FIREBASE_API_KEY=your_firebase_api_key
+VITE_RECAPTCHA_SITE_KEY=your_recaptcha_site_key
+```
+
+## 🔄 Connect Frontend to Backend
+
+### Django CORS Configuration
+
+In `settings.py`:
+
+```python
 INSTALLED_APPS = [
     ...
+    'rest_framework',
     'corsheaders',
     ...
 ]
 
 MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',
+    'django.middleware.common.CommonMiddleware',
     ...
 ]
 
 CORS_ALLOWED_ORIGINS = [
-    "http://localhost:3000",
+    "http://localhost:5173",
+    "http://127.0.0.1:5173",
 ]
-In React, use Axios or fetch to make API calls to http://localhost:8000/api/...
 
-🚀 Deployment
-To deploy:
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    ],
+}
+```
 
-Backend: Render / Railway / Heroku / AWS
+### Frontend API Configuration
 
-Frontend: Vercel / Netlify / GitHub Pages
+In React, configure Axios base URL to communicate with Django backend:
 
-Make sure to:
+```javascript
+import axios from 'axios';
 
-Add .env files for secrets
+const api = axios.create({
+  baseURL: import.meta.env.VITE_API_URL || 'http://127.0.0.1:8000/api',
+});
+```
 
-Use production builds
+## 📜 Available Scripts
 
-Set ALLOWED_HOSTS and CORS correctly
+### Frontend
+- `npm run dev` - Start Vite development server
+- `npm run build` - Build for production
+- `npm run preview` - Preview production build
+- `npm run lint` - Run ESLint
 
-🤝 Contribution
-Contributions are welcome!
+### Backend
+- `python manage.py runserver` - Start Django development server
+- `python manage.py migrate` - Run database migrations
+- `python manage.py makemigrations` - Create new migrations
+- `python manage.py createsuperuser` - Create admin user
+- `python manage.py test` - Run tests
 
-bash
-Copy
-Edit
-git clone https://github.com/aryan-kaushik541/Website.git
-git checkout -b feature-name
-git commit -m "Added feature"
-git push origin feature-name
-Then open a Pull Request.
+## 🚀 Deployment
 
-📜 License
+### Backend Deployment Options
+- **Railway** (Recommended)
+- **Render**
+- **Heroku**
+- **AWS EC2**
+- **DigitalOcean**
+
+### Frontend Deployment Options
+- **Vercel** (Recommended for Vite)
+- **Netlify**
+- **GitHub Pages**
+- **Cloudflare Pages**
+
+### Pre-Deployment Checklist
+- [ ] Set `DEBUG=False` in Django settings
+- [ ] Configure `ALLOWED_HOSTS` properly
+- [ ] Update CORS settings for production domain
+- [ ] Set up environment variables on hosting platform
+- [ ] Use production database (PostgreSQL recommended)
+- [ ] Configure static files serving
+- [ ] Set up SSL certificates
+- [ ] Update API URLs in frontend
+
+## 🔒 Security Features
+
+- JWT-based authentication
+- Password strength validation (zxcvbn)
+- Google reCAPTCHA integration
+- CORS protection
+- CSRF protection
+- Secure HTTP-only cookies
+- Environment variable management
+
+## 🤝 Contributing
+
+Contributions are welcome! Please follow these steps:
+
+```bash
+# Fork and clone the repository
+git clone https://github.com/Aryankaushik541/Website.git
+
+# Create a new branch
+git checkout -b feature/your-feature-name
+
+# Make your changes and commit
+git commit -m "Add: your feature description"
+
+# Push to your fork
+git push origin feature/your-feature-name
+
+# Open a Pull Request
+```
+
+## 📝 License
+
 This project is licensed under the MIT License.
 
-👨‍💻 Author
-Aryan Kaushik
-GitHub: @aryan-kaushik541
+## 👨‍💻 Author
 
-=======
-# 🌐 Full Stack Website
+**Aryan Kaushik**
+- GitHub: [@Aryankaushik541](https://github.com/Aryankaushik541)
+- Email: aryankaushik541@gmail.com
 
-A full-stack web application built with **React.js (frontend)** and **Django (backend)**. This project demonstrates a modern web architecture with API-driven communication, reusable components, and clean UI.
+## 🙏 Acknowledgments
 
-## 🔗 Live Demo
-
-Coming Soon…
-
-## 🧩 Tech Stack
-
-- 🔙 **Backend**: Django, Django REST Framework
-- 🔜 **Frontend**: React.js, JSX, CSS
-- 📦 **Package Management**: pip, npm
-- 🔗 **API Communication**: Fetch / Axios
-- 🔒 **Security**: Django CORS, CSRF, JWT (if used)
+- Built with Create React App and Vite
+- UI components from Material-UI
+- Styling with Tailwind CSS
+- Animations powered by Framer Motion
+- Backend powered by Django REST Framework
+- Icons from Heroicons, Material Icons, and React Icons
 
 ---
 
-## 📁 Project Structure
-
-```bash
-Website/
-├── backend/            # Django project
-│   ├── manage.py
-│   └── ...
-├── frontend/           # React app
-│   ├── package.json
-│   ├── src/
-│   └── ...
-└── README.md
-
-⚙️ Setup Instructions
-1️⃣ Backend (Django)
-
-cd backend
-python -m venv env
-source env/bin/activate  # or env\Scripts\activate on Windows
-pip install -r requirements.txt
-python manage.py migrate
-python manage.py runserver
-
-
-Server starts at http://127.0.0.1:8000/
-
-2️⃣ Frontend (React)
-
-cd frontend
-npm install
-npm start
-App starts at http://localhost:3000/
-
-🔄 Connect Frontend to Backend
-Make sure to enable CORS in Django:
-
-python
-Copy
-Edit
-# settings.py
-INSTALLED_APPS = [
-    ...
-    'corsheaders',
-    ...
-]
-
-MIDDLEWARE = [
-    'corsheaders.middleware.CorsMiddleware',
-    ...
-]
-
-CORS_ALLOWED_ORIGINS = [
-    "http://localhost:3000",
-]
-In React, use Axios or fetch to make API calls to http://localhost:8000/api/...
-
-🚀 Deployment
-To deploy:
-
-Backend: Render / Railway / Heroku / AWS
-
-Frontend: Vercel / Netlify / GitHub Pages
-
-Make sure to:
-
-Add .env files for secrets
-
-Use production builds
-
-Set ALLOWED_HOSTS and CORS correctly
-
-🤝 Contribution
-Contributions are welcome!
-
-bash
-Copy
-Edit
-git clone https://github.com/aryan-kaushik541/Website.git
-git checkout -b feature-name
-git commit -m "Added feature"
-git push origin feature-name
-Then open a Pull Request.
-
-📜 License
-This project is licensed under the MIT License.
-
-👨‍💻 Author
-Aryan Kaushik
-GitHub: @aryan-kaushik541
-
->>>>>>> 3cf6b58410daae3a080ed1f55536efbcc61001b9
+**Note**: This is the Neverend Lifestyle e-commerce platform - a complete full-stack solution for modern online retail.
